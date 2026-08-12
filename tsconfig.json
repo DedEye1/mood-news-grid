@@ -8,6 +8,14 @@
     // See also https://aka.ms/tsconfig/module
     "module": "esnext",
     "target": "esnext",
+    "paths": {
+      "@classes/*": [
+        "./classes/*"
+      ],
+      "@components/*": [
+        "./components/*"
+      ],
+    },
     // For nodejs:
     // "lib": ["esnext"],
     "types": [],
