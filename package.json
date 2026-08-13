@@ -23,7 +23,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "next",
-    "migrate": "tsx scripts/migrate.ts",
+    "migrate-up": "tsx scripts/migrate-up.ts",
+    "migrate-down": "tsx scripts/migrate-down.ts",
     "lint": "oxlint --react-plugin --nextjs-plugin"
   },
   "devDependencies": {
