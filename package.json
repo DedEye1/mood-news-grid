@@ -25,7 +25,8 @@
     "dev": "next",
     "migrate-up": "tsx scripts/migrate-up.ts",
     "migrate-down": "tsx scripts/migrate-down.ts",
-    "lint": "oxlint --react-plugin --nextjs-plugin"
+    "lint": "oxlint --react-plugin --nextjs-plugin",
+    "test-main": "tsx src/main.ts"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^9.6.0",
