@@ -2,6 +2,7 @@ import { type NewsItem } from '@classes/news'
 import Database from 'better-sqlite3'
 import { SqliteError } from 'better-sqlite3'
 import { log, logError } from '@modules/dev-log'
+import { NewsContent } from '@classes/news-content'
 
 const db = new Database('news.db')
 
@@ -19,9 +20,36 @@ export function saveNews(news: NewsItem[]) {
     } catch (err) {
       if (err instanceof SqliteError) {
         logError(true, `Error saving news on id ${news.id}: ${err.message}`)
+      } else {
+        logError(true, `Error saving news on id ${news.id}: ${err}`)
       }
     }
   })
+}
+
+export function saveNewsContent(newsContent: NewsContent[]) {
+  const insert = db.prepare(`INSERT OR IGNORE INTO news_content (news_id, content, mood) VALUES (?, ?, ?)`)
+
+  const insertMany = db.transaction((items: NewsContent[]) => {
+    const seen = new Set<string>()
+    for (const nc of items) {
+      const key = `${nc.newsId}::${nc.content}`
+      if (seen.has(key)) continue
+      seen.add(key)
+      insert.run(nc.newsId, nc.content, String(nc.mood))
+    }
+  })
+
+  try {
+    insertMany(newsContent)
+    log(`Saved ${newsContent.length} news content items (duplicates ignored)`)
+  } catch (err) {
+    if (err instanceof SqliteError) {
+      logError(true, `Error saving news content batch: ${err.message}`)
+    } else {
+      logError(true, `Error saving news content batch: ${err}`)
+    }
+  }
 }
 
 export function getAllNews() {
@@ -32,4 +60,14 @@ export function getAllNews() {
 export function getNewsById(id: number) {
   const query = db.prepare(`SELECT * FROM news WHERE id = ?`)
   return query.get(id) as NewsItem
+}
+
+export function getAllNewsContent() {
+  const query = db.prepare(`SELECT * FROM news_content`)
+  return query.all() as NewsContent[]
+}
+
+export function getNewsContentById(newsId: number) {
+  const query = db.prepare(`SELECT * FROM news_content WHERE news_id = ?`)
+  return query.get(newsId) as NewsContent
 }
