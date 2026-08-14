@@ -11,7 +11,7 @@ export function getCollumnsNames() {
   return newsQuery.columns().map((column) => column.name)
 }
 
-export function saveNews(news: NewsItem[]) {
+export function saveNews(...news: NewsItem[]) {
   const query = db.prepare(`INSERT INTO news (id, title, link, description, category, pubDate) VALUES (?, ?, ?, ?, ?, ?)`)
   news.map((news) => {
     try {
@@ -27,7 +27,7 @@ export function saveNews(news: NewsItem[]) {
   })
 }
 
-export function saveNewsContent(newsContent: NewsContent[]) {
+export function saveNewsContent(...newsContent: NewsContent[]) {
   const insert = db.prepare(`INSERT OR IGNORE INTO news_content (news_id, content, mood) VALUES (?, ?, ?)`)
 
   const insertMany = db.transaction((items: NewsContent[]) => {
