@@ -3,5 +3,6 @@ config()
 
 export const env = {
   API_KEY: process.env.API_KEY || '',
-  URL_RSS: process.env.URL_RSS || '',
+  API_URL: process.env.API_URL || '',
+  RSS_URL: process.env.RSS_URL || '',
 }

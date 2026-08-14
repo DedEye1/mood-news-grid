@@ -11,7 +11,7 @@ export type NewsItem = {
 }
 
 export async function getNewsRss() {
-  const response = await fetch(env.URL_RSS)
+  const response = await fetch(env.RSS_URL)
   const rawText = await response.text()
 
   const parser = new XMLParser()
