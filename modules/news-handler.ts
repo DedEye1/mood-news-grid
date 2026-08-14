@@ -1,6 +1,6 @@
-import { env } from '@classes/env-storage'
+import { env } from '@modules/env-storage'
 import { XMLParser } from 'fast-xml-parser'
-import { type NewsItem } from '@proj-types/news'
+import { type NewsItem } from '@classes/news'
 
 export async function getNewsRss() {
   const response = await fetch(env.RSS_URL)

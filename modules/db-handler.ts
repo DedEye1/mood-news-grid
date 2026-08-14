@@ -1,7 +1,7 @@
-import { type NewsItem } from '@proj-types/news'
+import { type NewsItem } from '@classes/news'
 import Database from 'better-sqlite3'
 import { SqliteError } from 'better-sqlite3'
-import { log, logError } from '@classes/dev-log'
+import { log, logError } from '@modules/dev-log'
 
 const db = new Database('news.db')
 

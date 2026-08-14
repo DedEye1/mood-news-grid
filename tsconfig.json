@@ -9,12 +9,15 @@
     "module": "esnext",
     "target": "esnext",
     "paths": {
-      "@classes/*": [
-        "./classes/*"
+      "@modules/*": [
+        "./modules/*"
       ],
       "@components/*": [
         "./components/*"
       ],
+      "@classes/*": [
+        "./classes/*"
+      ]
     },
     // For nodejs:
     // "lib": ["esnext"],
