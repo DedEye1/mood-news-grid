@@ -1,3 +1,3 @@
-export function GET(request: Request) {
+export function GET(_request: Request) {
   return new Response('Hello, world!')
 }
