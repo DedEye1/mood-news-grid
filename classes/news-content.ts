@@ -1,12 +1,12 @@
 export class NewsContent {
-  id: number
-  news_id: number
+  newsId: number
   content: string
-  mood: string
-  constructor(id: number, news_id: number, content: string, mood: string) {
-    this.id = id
-    this.news_id = news_id
+  mood: Mood
+  constructor(newsId: number, content: string, mood: Mood) {
+    this.newsId = newsId
     this.content = content
     this.mood = mood
   }
 }
+
+type Mood = 'positive' | 'negative' | 'ironic' | 'standard'
