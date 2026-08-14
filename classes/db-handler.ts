@@ -1,4 +1,4 @@
-import { type NewsItem } from '@classes/news-handler'
+import { type NewsItem } from '@proj-types/news'
 import Database from 'better-sqlite3'
 import { SqliteError } from 'better-sqlite3'
 import { log, logError } from '@classes/dev-log'
