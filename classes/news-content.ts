@@ -9,4 +9,4 @@ export class NewsContent {
   }
 }
 
-type Mood = 'positive' | 'negative' | 'ironic' | 'standard'
+export type Mood = 'positive' | 'negative' | 'ironic' | 'standard'
