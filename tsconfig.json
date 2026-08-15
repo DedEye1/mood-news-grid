@@ -10,13 +10,13 @@
     "target": "esnext",
     "paths": {
       "@modules/*": [
-        "./modules/*"
+        "./app/_modules/*"
       ],
       "@components/*": [
-        "./components/*"
+        "./app/_components/*"
       ],
       "@classes/*": [
-        "./classes/*"
+        "./app/_classes/*"
       ]
     },
     // For nodejs:

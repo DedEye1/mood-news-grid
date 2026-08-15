@@ -1,7 +1,7 @@
 import { env } from '@modules/env-storage'
 import { logError } from '@modules/dev-log'
 import { NewsContent } from '@classes/news-content'
-import { getNewsById } from './db-handler'
+import { getNewsById } from '@modules/db-handler'
 
 class FirecrawlRequestBody {
   url: string

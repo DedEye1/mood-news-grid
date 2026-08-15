@@ -1,4 +1,4 @@
-import { env } from './env-storage'
+import { env } from '@modules/env-storage'
 
 export function log(...message: any[]) {
   if (env.NODE_ENV === 'development') {
