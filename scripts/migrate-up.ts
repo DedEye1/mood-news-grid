@@ -1,4 +1,6 @@
+import { saveNewsDb } from '@modules/db-handler'
 import { env } from '@modules/env-storage'
+import { getNewsRss } from '@modules/news-handler'
 import Database from 'better-sqlite3'
 import fs from 'fs'
 import path from 'path'
@@ -32,3 +34,6 @@ db.exec(`
   CREATE UNIQUE INDEX IF NOT EXISTS idx_news_content_unique
   ON news_content (news_id, content);
 `)
+
+const rss = await getNewsRss()
+saveNewsDb(...rss)
