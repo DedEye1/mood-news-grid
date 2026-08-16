@@ -1,4 +1,7 @@
+# Dev files
 node_modules
+
+# Unneeded files
 .env
 .next
 example*

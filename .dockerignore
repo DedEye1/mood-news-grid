@@ -1,0 +1,18 @@
+# Dev files
+node_modules
+.oxlintrc.json
+
+# Unneeded files
+example*
+*.db
+README.md
+scripts/main.ts
+.git*
+
+# Docker files
+.dockerignore
+Dockerfile
+
+# Next files
+.next
+next-env.d.ts
