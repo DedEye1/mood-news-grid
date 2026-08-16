@@ -7,7 +7,7 @@ export default function MarkdownRenderer({ source }: { source: string }) {
   const html = React.useMemo(() => {
     try {
       return marked.parse(source || "")
-    } catch (e) {
+    } catch {
       return String(source)
     }
   }, [source])

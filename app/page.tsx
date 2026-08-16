@@ -1,6 +1,7 @@
 "use client"
 import React, { useEffect, useState } from "react"
 import { Container, Typography, Box, IconButton, CircularProgress } from "@mui/material"
+import Image from 'next/image'
 import { toRussianError } from "./_components/errorUtils"
 import NewsGrid from "./_components/NewsGrid"
 import ErrorAlert from "./_components/ErrorAlert"
@@ -60,7 +61,7 @@ export default function HomePage() {
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
         <Typography variant="h4">Все новости</Typography>
         <IconButton onClick={refreshRss} disabled={loading} aria-label="refresh">
-          <img src="/images/refresh-ccw-alt-3-svgrepo-com.svg" alt="refresh" width={20} height={20} />
+          <Image src="/images/refresh-ccw-alt-3-svgrepo-com.svg" alt="refresh" width={20} height={20} />
         </IconButton>
       </Box>
 

@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from "react"
-import { Stack, Button, Box, CircularProgress } from "@mui/material"
+import { Box, CircularProgress } from "@mui/material"
 import { toRussianError } from "./errorUtils"
 import MarkdownRenderer from "./MarkdownRenderer"
 import ErrorAlert from "./ErrorAlert"
@@ -10,7 +10,7 @@ export default function MoodToggle({ id, original, selectedMood }: { id: string;
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  const allowed = ['standard', 'positive', 'negative', 'ironic']
+  
 
   // When selectedMood changes, fetch generated content (or clear when null)
   React.useEffect(() => {
@@ -25,21 +25,18 @@ export default function MoodToggle({ id, original, selectedMood }: { id: string;
       setError(null)
       setGenerated(null)
       try {
-        const moodParam = allowed.includes(selectedMood) ? selectedMood : 'standard'
+        const moodParam = (selectedMood === 'positive' || selectedMood === 'negative' || selectedMood === 'ironic' || selectedMood === 'standard') ? selectedMood : 'standard'
         const res = await fetch(`/api/get-news-content/${encodeURIComponent(id)}/${encodeURIComponent(moodParam)}`)
         if (!res.ok) {
           await res.json().catch(() => ({}))
           throw new Error(toRussianError(res, null, 'Ошибка сервера'))
         }
         const json = await res.json()
-        if (!mounted) return
-        setGenerated(json?.content ?? '')
+        if (mounted) setGenerated(json?.content ?? '')
       } catch (e: any) {
-        if (!mounted) return
-        setError(toRussianError(null, e, 'Ошибка при запросе'))
+        if (mounted) setError(toRussianError(null, e, 'Ошибка при запросе'))
       } finally {
-        if (!mounted) return
-        setLoading(false)
+        if (mounted) setLoading(false)
       }
     }
 

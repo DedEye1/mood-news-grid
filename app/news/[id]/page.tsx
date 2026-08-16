@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from "react"
 import { useParams, useRouter } from "next/navigation"
 import { Container, Typography, Box, CircularProgress, Link as MuiLink, IconButton, FormControl, Select, MenuItem, InputLabel } from "@mui/material"
+import Image from 'next/image'
 import { toRussianError } from "../../_components/errorUtils"
 import { formatDateShort } from "../../_components/dateUtils"
 import MoodToggle from "../../_components/MoodToggle"
-import MarkdownRenderer from "../../_components/MarkdownRenderer"
 import ErrorAlert from "../../_components/ErrorAlert"
 
 type Meta = { id: string; title: string; category?: string; pubDate?: string; link?: string; content?: string }
@@ -64,7 +64,7 @@ export default function NewsDetailPage() {
       <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2, alignItems: 'center' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <IconButton onClick={() => router.push('/')} aria-label="back">
-            <img src="/images/arrow-sm-left-svgrepo-com.svg" alt="back" width={20} height={20} />
+            <Image src="/images/arrow-sm-left-svgrepo-com.svg" alt="back" width={20} height={20} />
           </IconButton>
           <Box>
             <Typography variant="h5">{meta.title}</Typography>
