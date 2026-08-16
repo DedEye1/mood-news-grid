@@ -3,8 +3,9 @@ import Database from 'better-sqlite3'
 import { SqliteError } from 'better-sqlite3'
 import { log, logError } from '@modules/dev-log'
 import { NewsContent, type Mood } from '@classes/news-content'
+import { env } from '@modules/env-storage'
 
-const db = new Database('news.db')
+const db = new Database(env.DB_PATH)
 
 export function getCollumnsNamesDb() {
   const newsQuery = db.prepare(`SELECT * FROM news`)

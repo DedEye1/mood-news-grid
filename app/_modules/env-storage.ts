@@ -7,4 +7,5 @@ export const env = {
   API_KEY: process.env.API_KEY || '',
   API_URL: process.env.API_URL || '',
   RSS_URL: process.env.RSS_URL || '',
+  DB_PATH: process.env.DB_PATH || 'news.db'
 }

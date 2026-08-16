@@ -1,6 +1,7 @@
+import { env } from '@modules/env-storage'
 import Database from 'better-sqlite3'
 
-const db = new Database('news.db')
+const db = new Database(env.DB_PATH)
 
 db.exec(`
   CREATE TABLE IF NOT EXISTS news (
