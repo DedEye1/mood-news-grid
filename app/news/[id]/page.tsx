@@ -62,7 +62,7 @@ export default function NewsDetailPage() {
   return (
     <Container sx={{ py: 3 }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2, alignItems: 'center' }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <IconButton onClick={() => router.push('/')} aria-label="back">
             <img src="/images/arrow-sm-left-svgrepo-com.svg" alt="back" width={20} height={20} />
           </IconButton>

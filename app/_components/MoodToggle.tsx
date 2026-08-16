@@ -10,7 +10,7 @@ export default function MoodToggle({ id, original, selectedMood }: { id: string;
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  const allowed = ['standard','positive','negative','ironic']
+  const allowed = ['standard', 'positive', 'negative', 'ironic']
 
   // When selectedMood changes, fetch generated content (or clear when null)
   React.useEffect(() => {
