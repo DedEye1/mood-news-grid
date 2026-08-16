@@ -10,3 +10,4 @@ export class NewsContent {
 }
 
 export type Mood = 'positive' | 'negative' | 'ironic' | 'standard'
+export const MOODS = ['positive', 'negative', 'ironic', 'standard']
