@@ -54,20 +54,20 @@ export function saveNewsContentDb(...newsContent: NewsContent[]) {
 
 export function getAllNewsDb() {
   const query = db.prepare(`SELECT * FROM news`)
-  return query.all() as NewsItem[]
+  return query.all() as NewsItem[] | undefined
 }
 
 export function getNewsByIdDb(id: number) {
   const query = db.prepare(`SELECT * FROM news WHERE id = ?`)
-  return query.get(id) as NewsItem
+  return query.get(id) as NewsItem | undefined
 }
 
 export function getAllNewsContentDb() {
   const query = db.prepare(`SELECT * FROM news_content`)
-  return query.all() as NewsContent[]
+  return query.all() as NewsContent[] | undefined
 }
 
 export function getNewsContentInMoodDb(newsId: number, mood: Mood) {
   const query = db.prepare(`SELECT * FROM news_content WHERE news_id = ? AND mood = ?`)
-  return query.get(newsId, mood) as NewsContent
+  return query.get(newsId, mood) as NewsContent | undefined
 }
