@@ -9,8 +9,8 @@ RUN npm ci --omit=dev
 
 COPY . .
 
-RUN npm run build
 RUN npm run migrate-up
+RUN npm run build
 
 ENV NODE_ENV=production
 

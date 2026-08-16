@@ -1,6 +1,10 @@
 import { env } from '@modules/env-storage'
 import Database from 'better-sqlite3'
+import fs from 'fs'
+import path from 'path'
 
+const folder = path.parse(env.DB_PATH)
+fs.mkdirSync(folder.dir, { recursive: true })
 const db = new Database(env.DB_PATH)
 
 db.exec(`
