@@ -5,13 +5,14 @@ import { MOODS, NewsContent, type Mood } from "@classes/news-content"
 import { log, logError } from "@modules/dev-log"
 import { getNewsContentInMoodDb, saveNewsContentDb } from "@modules/db-handler"
 
-export async function GET(
-  request: Request,
-  context?: { params: Promise<{ id: number; mood: Mood }> | { id?: number; mood?: Mood } }
-) {
-  const params = context?.params ?? {}
-  const { id, mood } = await params
-  log("request.url:", request.url, "raw params:", await params)
+export async function GET(request: Request, context: any) {
+  const paramsObj = await (context?.params ?? {})
+  const idStr = paramsObj?.id
+  const moodStr = paramsObj?.mood
+  log("request.url:", request.url, "raw params:", paramsObj)
+
+  const id = idStr ? Number(idStr) : undefined
+  const mood = moodStr as Mood | undefined
 
   if (!id || !mood || !MOODS.includes(mood)) {
     logError('No params provided')

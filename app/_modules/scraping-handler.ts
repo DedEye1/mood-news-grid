@@ -39,6 +39,10 @@ export async function getMdFromNewsLink(url: string): Promise<string | undefined
 export async function getNewsContentById(newsId: number): Promise<NewsContent | undefined> {
   try {
     const news = getNewsByIdDb(newsId)
+    if (!news) {
+      logError(`No news meta for id ${newsId}`)
+      return undefined
+    }
 
     const requestBody = new FirecrawlRequestBody(news.link.toString())
     options.body = JSON.stringify(requestBody)

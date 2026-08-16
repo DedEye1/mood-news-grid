@@ -1,14 +1,11 @@
 import { getNewsByIdDb } from "@modules/db-handler"
-import { type Mood } from "@classes/news-content"
 import { logError } from "@modules/dev-log"
 import { NextResponse } from "next/server"
 
-export async function GET(
-  request: Request,
-  context?: { params: Promise<{ id: number; mood: Mood }> | { id?: number; mood?: Mood } }
-) {
-  const params = context?.params ?? {}
-  const { id } = await params
+export async function GET(request: Request, context: any) {
+  const paramsObj = await (context?.params ?? {})
+  const idStr = paramsObj?.id
+  const id = idStr ? Number(idStr) : undefined
 
   if (!id) {
     logError('No params provided')
