@@ -1,7 +1,7 @@
 import { env } from '@modules/env-storage'
 import { logError } from '@modules/dev-log'
 import { NewsContent } from '@classes/news-content'
-import { getNewsById } from '@modules/db-handler'
+import { getNewsByIdDb } from '@modules/db-handler'
 
 class FirecrawlRequestBody {
   url: string
@@ -38,7 +38,7 @@ export async function getMdFromNewsLink(url: string): Promise<string | undefined
 
 export async function getNewsContentById(newsId: number): Promise<NewsContent | undefined> {
   try {
-    const news = getNewsById(newsId)
+    const news = getNewsByIdDb(newsId)
 
     const requestBody = new FirecrawlRequestBody(news.link.toString())
     options.body = JSON.stringify(requestBody)

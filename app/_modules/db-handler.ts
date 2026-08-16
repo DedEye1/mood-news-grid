@@ -2,16 +2,16 @@ import { type NewsItem } from '@classes/news'
 import Database from 'better-sqlite3'
 import { SqliteError } from 'better-sqlite3'
 import { log, logError } from '@modules/dev-log'
-import { NewsContent } from '@classes/news-content'
+import { NewsContent, type Mood } from '@classes/news-content'
 
 const db = new Database('news.db')
 
-export function getCollumnsNames() {
+export function getCollumnsNamesDb() {
   const newsQuery = db.prepare(`SELECT * FROM news`)
   return newsQuery.columns().map((column) => column.name)
 }
 
-export function saveNews(...news: NewsItem[]) {
+export function saveNewsDb(...news: NewsItem[]) {
   const query = db.prepare(`INSERT INTO news (id, title, link, description, category, pubDate) VALUES (?, ?, ?, ?, ?, ?)`)
   news.map((news) => {
     try {
@@ -27,7 +27,7 @@ export function saveNews(...news: NewsItem[]) {
   })
 }
 
-export function saveNewsContent(...newsContent: NewsContent[]) {
+export function saveNewsContentDb(...newsContent: NewsContent[]) {
   const insert = db.prepare(`INSERT OR IGNORE INTO news_content (news_id, content, mood) VALUES (?, ?, ?)`)
 
   const insertMany = db.transaction((items: NewsContent[]) => {
@@ -52,22 +52,22 @@ export function saveNewsContent(...newsContent: NewsContent[]) {
   }
 }
 
-export function getAllNews() {
+export function getAllNewsDb() {
   const query = db.prepare(`SELECT * FROM news`)
   return query.all() as NewsItem[]
 }
 
-export function getNewsById(id: number) {
+export function getNewsByIdDb(id: number) {
   const query = db.prepare(`SELECT * FROM news WHERE id = ?`)
   return query.get(id) as NewsItem
 }
 
-export function getAllNewsContent() {
+export function getAllNewsContentDb() {
   const query = db.prepare(`SELECT * FROM news_content`)
   return query.all() as NewsContent[]
 }
 
-export function getNewsContentById(newsId: number) {
-  const query = db.prepare(`SELECT * FROM news_content WHERE news_id = ?`)
-  return query.get(newsId) as NewsContent
+export function getNewsContentInMoodDb(newsId: number, mood: Mood) {
+  const query = db.prepare(`SELECT * FROM news_content WHERE news_id = ? AND mood = ?`)
+  return query.get(newsId, mood) as NewsContent
 }
